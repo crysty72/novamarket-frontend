@@ -1,16 +1,87 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# NovaMarket E-commerce 🛒
 
-Currently, two official plugins are available:
+Proyecto de e-commerce tecnológico desarrollado por
+el Grupo 2602 de Talently Lab.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Frontend
 
-## React Compiler
+Aplicación web desarrollada con React y Vite.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Tecnologías
 
-## Expanding the ESLint configuration
+- React
+- JavaScript
+- Vite
+- React Router
+- CSS
+- Context API (propuesto)
+- Git y GitHub
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Instalación
+
+Clonar el repositorio:
+
+git clone https://github.com/crysty72/novamarket-frontend.git
+
+Ingresar al proyecto:
+
+cd novamarket-frontend
+
+Instalar dependencias:
+
+npm install
+
+Ejecutar el proyecto:
+
+npm run dev
+
+## Estado del desarrollo
+
+### Semana 1
+- Análisis de vistas y componentes.
+- Propuesta de stack tecnológico.
+- Documentación inicial de arquitectura.
+
+### Semana 2
+- Estructura inicial de carpetas.
+- Documentación de componentes y props.
+- Planificación de AuthContext y CartContext.
+- Documentación de rutas y navegación.
+
+### Implementado
+- Proyecto React + Vite.
+- Navbar inicial.
+- Navegación con React Router.
+- Rutas temporales de Inicio, Productos, Carrito y Login.
+- Estilos preliminares.
+
+## Estructura
+
+src/
+- assets/
+- components/
+- context/
+- pages/
+- routes/
+- services/
+- styles/
+
+## Pendientes
+
+- Validar arquitectura con PM, Backend y UX/UI.
+- Revisar diseños definitivos de Figma.
+- Implementar las pantallas del MVP.
+- Integrar los endpoints del Backend.
+
+## Equipo
+
+Grupo 2602 - NovaMarket
+
+Frontend inicial: Cristina Carrizo
+
+## Nota
+
+Proyecto en desarrollo.
+La arquitectura y el diseño están sujetos
+a revisión y aprobación del equipo.
