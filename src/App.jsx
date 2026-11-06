@@ -1,23 +1,18 @@
 
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-
+import Home from "./pages/Home";
+import Productos from "./pages/Productos";
 function App() {
   return (
     <>
       <Navbar />
 
-      <main style={{ padding: "24px" }}>
+      <main>
         <Routes>
-          <Route
-            path="/"
-            element={<h2>Bienvenidos a NovaMarket 🛒</h2>}
-          />
+          <Route path="/" element={<Home />} />
 
-          <Route
-            path="/productos"
-            element={<h2>Catálogo de productos</h2>}
-          />
+         <Route path="/productos" element={<Productos />} />
 
           <Route
             path="/carrito"
