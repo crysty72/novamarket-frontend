@@ -2,6 +2,8 @@
 import { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { productosDemo } from "../data/productosDemo";
+import { useCart } from "../context/useCart";
+
 
 // Datos ficticios para desarrollo.
 // Se reemplazarán al integrar la API de Backend.
@@ -31,11 +33,11 @@ function Productos() {
     return coincideCategoria && coincideBusqueda;
   });
 
-  const handleAgregarCarrito = (producto) => {
-    // Temporal: el carrito se implementará posteriormente.
-    console.log("Producto seleccionado:", producto);
-  };
+ const { agregarProducto } = useCart();
 
+const handleAgregarCarrito = (producto) => {
+  agregarProducto(producto);
+};
   return (
     <section className="productos">
       <h2>Catálogo de productos</h2>

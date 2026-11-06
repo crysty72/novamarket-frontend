@@ -1,10 +1,12 @@
 
 import { Link, useParams } from "react-router-dom";
 import { productosDemo } from "../data/productosDemo";
+import { useCart } from "../context/useCart";
+
 
 function DetalleProducto() {
   const { id } = useParams();
-
+const { agregarProducto } = useCart();
   const producto = productosDemo.find(
     (item) => String(item.id) === id
   );
@@ -47,9 +49,13 @@ function DetalleProducto() {
         {producto.stock > 0 ? "Disponible" : "Sin stock"}
       </p>
 
-      <button type="button" disabled={producto.stock <= 0}>
-        Agregar al carrito
-      </button>
+      <button
+  type="button"
+  disabled={producto.stock <= 0}
+  onClick={() => agregarProducto(producto)}
+>
+  Agregar al carrito
+</button>
     </section>
   );
 }

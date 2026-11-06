@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Productos from "./pages/Productos";
 import DetalleProducto from "./pages/DetalleProducto";
+import Carrito from "./pages/Carrito";
 
 function App() {
   return (
@@ -16,10 +17,7 @@ function App() {
 
          <Route path="/productos" element={<Productos />} />
 
-          <Route
-            path="/carrito"
-            element={<h2>Carrito de compras</h2>}
-          />
+          <Route path="/carrito" element={<Carrito />} />
 
           <Route
             path="/login"
