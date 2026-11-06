@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Productos from "./pages/Productos";
+import DetalleProducto from "./pages/DetalleProducto";
+
 function App() {
   return (
     <>
@@ -28,6 +30,11 @@ function App() {
             path="*"
             element={<h2>Página no encontrada</h2>}
           />
+<Route
+  path="/productos/:id"
+  element={<DetalleProducto />}
+/>
+
         </Routes>
       </main>
     </>
