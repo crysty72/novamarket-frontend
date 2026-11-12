@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Productos from "./pages/Productos";
 import DetalleProducto from "./pages/DetalleProducto";
 import Carrito from "./pages/Carrito";
+import Checkout from "./pages/Checkout";
+import ConfirmacionPedido from "./pages/ConfirmacionPedido";
 
 function App() {
   return (
@@ -31,6 +33,13 @@ function App() {
 <Route
   path="/productos/:id"
   element={<DetalleProducto />}
+/>
+
+<Route path="/checkout" element={<Checkout />} />
+
+<Route
+  path="/confirmacion"
+  element={<ConfirmacionPedido />}
 />
 
         </Routes>
