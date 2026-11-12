@@ -238,3 +238,63 @@ header a:hover {
 .ver-detalle:hover {
   background-color: #eef2ff;
 }
+
+/* HOME - NOVAMARKET */
+
+.home {
+  background: linear-gradient(135deg, #4338ca, #312e81);
+  color: white;
+  padding: 80px 40px;
+  border-radius: 20px;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+}
+
+.home-contenido {
+  max-width: 650px;
+}
+
+.home h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.home p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.home-boton {
+  display: inline-block;
+  background-color: white;
+  color: #4338ca;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.home-boton:hover {
+  background-color: #eef2ff;
+}
+
+.home-boton:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
+
+/* Adaptación para celulares */
+
+@media (max-width: 600px) {
+  .home {
+    padding: 48px 24px;
+    min-height: 300px;
+  }
+
+  .home p {
+    font-size: 16px;
+  }
+}
