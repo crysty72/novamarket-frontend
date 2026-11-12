@@ -1,14 +1,22 @@
 
 import { Link } from "react-router-dom";
+import logoNovaMarket from "../assets/logo_horizontal.svg";
 
 function Navbar() {
   return (
     <header>
       <nav aria-label="Navegación principal">
-        <Link to="/">
-          <h1>NovaMarket</h1>
-        </Link>
-
+       <Link to="/" aria-label="NovaMarket - Ir al inicio">
+  <img
+    src={logoNovaMarket}
+    alt="NovaMarket"
+    style={{
+      width: "180px",
+      height: "auto",
+      display: "block",
+    }}
+  />
+</Link>
         <div>
           <Link to="/">Inicio</Link>
           <Link to="/productos">Productos</Link>
