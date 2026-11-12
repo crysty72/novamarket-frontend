@@ -15,6 +15,8 @@ function Checkout() {
   const [datosValidados, setDatosValidados] =
     useState(false);
 
+    const [error, setError] = useState("");
+
   const formatoPrecio = (precio) =>
     Number(precio).toLocaleString("es-AR", {
       style: "currency",
@@ -32,12 +34,40 @@ function Checkout() {
     setDatosValidados(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ 
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    // Por ahora no enviamos datos al Backend.
-    setDatosValidados(true);
-  };
+  setError("");
+  setDatosValidados(false);
+
+  if (carrito.length === 0) {
+    setError("No podés continuar con el carrito vacío.");
+    return;
+  }
+
+  const stockInsuficiente = carrito.some(
+    (producto) =>
+      producto.stock <= 0 ||
+      producto.cantidad > producto.stock ||
+      producto.cantidad < 1
+  );
+
+  if (stockInsuficiente) {
+    setError(
+      "Uno o más productos no tienen stock suficiente."
+    );
+    return;
+  }
+
+  if (!cliente.name.trim() || !cliente.email.trim()) {
+    setError("Completá los datos obligatorios.");
+    return;
+  }
+
+  // Todavía no enviamos el pedido a Backend.
+  setDatosValidados(true);
+};
 
   return (
     <section className="checkout">
@@ -139,6 +169,11 @@ function Checkout() {
             </button>
           </form>
 
+{error && (
+  <p role="alert" className="mensaje-error">
+    {error}
+  </p>
+)}
           {datosValidados && (
             <p role="status">
               Datos completos. El pedido todavía
