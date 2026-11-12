@@ -1,27 +1,99 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { productosDemo } from "../data/productosDemo";
 import { useCart } from "../context/useCart";
 
+import {
+  obtenerProductos,
+  obtenerCategorias,
+} from "../services/productosService";
 
-// Datos ficticios para desarrollo.
-// Se reemplazarán al integrar la API de Backend.
+import {
+  adaptarProductos,
+} from "../services/productosAdapter";
 
+// La API queda desactivada hasta que Backend esté disponible.
+const USAR_API = import.meta.env.VITE_USAR_API === "true";
 
 function Productos() {
+  const { agregarProducto } = useCart();
+
+  const [productos, setProductos] = useState(
+    USAR_API ? [] : productosDemo
+  );
+
   const [categoria, setCategoria] = useState("Todas");
   const [busqueda, setBusqueda] = useState("");
 
-  const categorias = [
+  const [categorias, setCategorias] = useState([
     "Todas",
     "Periféricos",
     "Accesorios",
     "Gadgets",
-  ];
+  ]);
 
-  // Combinar búsqueda por nombre y filtro por categoría.
-  const productosFiltrados = productosDemo.filter((producto) => {
+  const [cargando, setCargando] = useState(USAR_API);
+  const [error, setError] = useState("");
+
+  // Preparado para cargar productos reales desde Backend.
+  useEffect(() => {
+    if (!USAR_API) return;
+
+    let activo = true;
+
+    async function cargarCatalogo() {
+      try {
+        const [respuestaProductos, respuestaCategorias] =
+          await Promise.all([
+            obtenerProductos(),
+            obtenerCategorias(),
+          ]);
+
+        if (!activo) return;
+
+        if (
+          !Array.isArray(respuestaProductos?.items) ||
+          !Array.isArray(respuestaCategorias)
+        ) {
+          throw new Error("Formato de respuesta incorrecto");
+        }
+
+        const productosAdaptados = adaptarProductos(
+          respuestaProductos.items,
+          respuestaCategorias
+        );
+
+        setProductos(productosAdaptados);
+
+        setCategorias([
+          "Todas",
+          ...new Set(
+            respuestaCategorias.map((cat) => cat.name)
+          ),
+        ]);
+      } catch (err) {
+        if (activo) {
+          setError(
+            err.message || "No se pudo cargar el catálogo"
+          );
+        }
+      } finally {
+        if (activo) {
+          setCargando(false);
+        }
+      }
+    }
+
+    cargarCatalogo();
+
+    return () => {
+      activo = false;
+    };
+  }, []);
+
+  // Buscador y filtros.
+  const productosFiltrados = productos.filter((producto) => {
     const coincideCategoria =
       categoria === "Todas" ||
       producto.categoria === categoria;
@@ -33,11 +105,10 @@ function Productos() {
     return coincideCategoria && coincideBusqueda;
   });
 
- const { agregarProducto } = useCart();
+  const handleAgregarCarrito = (producto) => {
+    agregarProducto(producto);
+  };
 
-const handleAgregarCarrito = (producto) => {
-  agregarProducto(producto);
-};
   return (
     <section className="productos">
       <h2>Catálogo de productos</h2>
@@ -46,7 +117,6 @@ const handleAgregarCarrito = (producto) => {
         Explorá nuestros accesorios, periféricos y gadgets.
       </p>
 
-      {/* Buscador */}
       <div className="buscador">
         <label htmlFor="buscar-producto">
           Buscar productos
@@ -61,7 +131,6 @@ const handleAgregarCarrito = (producto) => {
         />
       </div>
 
-      {/* Filtro por categoría */}
       <div className="filtros">
         <label htmlFor="categoria">
           Filtrar por categoría:
@@ -80,10 +149,16 @@ const handleAgregarCarrito = (producto) => {
         </select>
       </div>
 
-      {/* Listado de productos */}
-      {productosFiltrados.length === 0 ? (
+      {cargando ? (
+        <p role="status">Cargando productos...</p>
+      ) : error ? (
+        <p role="alert" className="sin-resultados">
+          Error: {error}
+        </p>
+      ) : productosFiltrados.length === 0 ? (
         <p className="sin-resultados">
-          No se encontraron productos con los filtros seleccionados.
+          No se encontraron productos con los filtros
+          seleccionados.
         </p>
       ) : (
         <div className="productos-grid">
