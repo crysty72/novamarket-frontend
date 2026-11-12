@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap");
 
 * {
   margin: 0;
@@ -172,4 +173,68 @@ main {
 
 .ver-detalle:hover {
   background-color: #eef3ff;
+}
+
+
+/* ========================================
+   IDENTIDAD VISUAL OFICIAL - NOVAMARKET
+======================================== */
+
+:root {
+  --color-primary: #4338ca;
+  --color-secondary: #0e7490;
+  --color-accent: #f59e0b;
+  --color-neutral: #1f2937;
+  --color-background: #f3f4f6;
+  --color-text: #111827;
+}
+
+/* Tipografías */
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* Navegación */
+header {
+  background-color: var(--color-neutral);
+}
+
+header a:hover {
+  color: var(--color-accent);
+}
+
+/* Productos */
+.product-card h3 {
+  color: var(--color-neutral);
+}
+
+.product-card button {
+  background-color: var(--color-primary);
+}
+
+.product-card button:hover:not(:disabled) {
+  background-color: #3730a3;
+}
+
+/* Buscador */
+.buscador input:focus {
+  outline-color: var(--color-primary);
+}
+
+/* Enlaces de detalle */
+.ver-detalle {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.ver-detalle:hover {
+  background-color: #eef2ff;
 }
