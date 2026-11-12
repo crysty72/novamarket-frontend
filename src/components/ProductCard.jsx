@@ -1,6 +1,9 @@
+
 import { Link } from "react-router-dom";
+
 function ProductCard({ producto, onAgregarCarrito }) {
   const precio = Number(producto.precio);
+  const disponible = producto.stock > 0;
 
   return (
     <article className="product-card">
@@ -25,25 +28,25 @@ function ProductCard({ producto, onAgregarCarrito }) {
       </p>
 
       <p>
-        {producto.stock > 0
-          ? "Disponible"
-          : "Sin stock"}
+        {disponible ? "Disponible" : "Sin stock"}
       </p>
 
-      <button
-        type="button"
-        disabled={producto.stock <= 0}
-        onClick={() => onAgregarCarrito?.(producto)}
-      >
-<Link
-  to={`/productos/${producto.id}`}
-  className="ver-detalle"
->
-  Ver detalle
-</Link>
+      <div className="product-card-actions">
+        <Link
+          to={`/productos/${producto.id}`}
+          className="ver-detalle"
+        >
+          Ver detalle
+        </Link>
 
-        Agregar al carrito
-      </button>
+        <button
+          type="button"
+          disabled={!disponible}
+          onClick={() => onAgregarCarrito?.(producto)}
+        >
+          Agregar al carrito
+        </button>
+      </div>
     </article>
   );
 }

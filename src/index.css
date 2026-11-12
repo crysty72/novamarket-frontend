@@ -298,3 +298,30 @@ header a:hover {
     font-size: 16px;
   }
 }
+
+
+/* Acciones de las tarjetas de productos */
+
+.product-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.product-card-actions .ver-detalle {
+  width: 100%;
+}
+
+.product-card-actions button {
+  width: 100%;
+  margin-top: 0;
+}
+
+.product-card {
+  transition: box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.1);
+}
